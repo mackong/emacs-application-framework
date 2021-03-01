@@ -539,7 +539,7 @@ class BrowserView(QWebEngineView):
     @interactive(insert_or_do=True)
     def enable_dark_mode(self):
         ''' Dark mode support.'''
-        self.eval_js("""DarkReader.enable({brightness: 100, contrast: 90, sepia: 10});""")
+        self.eval_js("""DarkReader.enable({brightness: 100, contrast: 100, sepia: 0});""")
 
     @interactive(insert_or_do=True)
     def disable_dark_mode(self):
@@ -629,7 +629,7 @@ class BrowserBuffer(Buffer):
         self.progressbar_color = QColor(self.emacs_var_dict["eaf-emacs-theme-foreground-color"])
         self.progressbar_height = 2
         self.light_mode_mask_color = QColor("#FFFFFF")
-        self.dark_mode_mask_color = QColor("#242525")
+        self.dark_mode_mask_color = QColor("#1E1E1E")
         self.is_dark_mode_enabled = self.dark_mode_is_enabled()
 
         # Reverse background and foreground color, to help cursor recognition.
@@ -681,9 +681,9 @@ class BrowserBuffer(Buffer):
         self.build_all_methods(self.buffer_widget)
         self.build_all_methods(self)
 
-        # Reset to default zoom when page init or page url changed.
+        # Reset to default zoom when page init or load finished.
         self.reset_default_zoom()
-        self.buffer_widget.urlChanged.connect(lambda url: self.reset_default_zoom())
+        self.buffer_widget.loadFinished.connect(lambda _: self.reset_default_zoom())
 
     def notify_print_message(self, file_path, success):
         ''' Notify the print as pdf message.'''
