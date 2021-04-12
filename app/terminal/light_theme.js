@@ -1,1 +1,24 @@
-theme = {background:"#ffffff", black:"#ffffff", red:"#cc342b", green:"#198844", yellow:"#fba922", blue:"#3971ed", magenta:"#a36ac7", cyan:"#3971ed", white:"#c5c8c6", brightBlack:"#969896", brightRed:"#cc342b", brightGreen:"#198844", brightYellow:"#fba922", brightBlue:"#3971ed", brightMagenta:"#a36ac7", brightCyan:"#3971ed", brightWhite:"#7276F8", cursor:"#373b41", foreground:"#373b41"}
+theme = {
+    black:         "#000000",
+    red:           "#DA3E39",
+    green:         "#41933E",
+    yellow:        "#855504",
+    blue:          "#315EEE",
+    magenta:       "#930092",
+    cyan:          "#0E6FAD",
+    white:         "#8E8F96",
+
+    brightBlack:   "#2A2B32",
+    brightRed:     "#DA3E39",
+    brightGreen:   "#41933E",
+    brightYellow:  "#855504",
+    brightBlue:    "#315EEE",
+    brightMagenta: "#930092",
+    brightCyan:    "#0E6FAD",
+    brightWhite:   "#FFFEFE",
+
+    cursor:        "#2A2B32",
+    cursorAccent:  "#FFFEFE",
+    foreground:    "#2A2B32",
+    background:    "#F8F8F8"
+}
