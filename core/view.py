@@ -24,6 +24,24 @@ from PyQt6.QtGui import QPainter, QWindow, QBrush
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QGraphicsView, QFrame
 from core.utils import eval_in_emacs, focus_emacs_buffer, get_emacs_func_result
 
+emacs_key_dict = {
+    Qt.Key_Space: '''SPC''',
+    Qt.Key_Return: '''RET''',
+    Qt.Key_Backspace: '''DEL''',
+    Qt.Key_Tab: '''TAB''',
+    Qt.Key_Backtab: '''<backtab>''',
+    Qt.Key_Home: '''<home>''',
+    Qt.Key_End: '''<end>''',
+    Qt.Key_Left: '''<left>''',
+    Qt.Key_Right: '''<right>''',
+    Qt.Key_Up: '''<up>''',
+    Qt.Key_Down: '''<down>''',
+    Qt.Key_PageUp: '''<prior>''',
+    Qt.Key_PageDown: '''<next>''',
+    Qt.Key_Delete: '''<delete>'''
+}
+
+
 class View(QWidget):
 
     def __init__(self, buffer, view_info):
@@ -119,6 +137,13 @@ class View(QWidget):
         if event.type() in event_type:
             focus_emacs_buffer(self.buffer_id)
             # Stop mouse event.
+            return True
+
+        # Transfer the key event to buffer widget.
+        if event.type() == QEvent.KeyPress:
+            args = [emacs_key_dict.get(event.key(), event.text())]
+            eval_in_emacs("eaf-read-key", args)
+            # Stop key event.
             return True
 
         return False
